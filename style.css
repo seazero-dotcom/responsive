@@ -1,0 +1,102 @@
+:root {
+  --text-color: #f0f4f5;
+  --background-color: #263343;
+  --accent-color: #cc58e4;
+}
+
+body {
+  margin: 0;
+  font-family: "Source Sans Pro";
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--background-color);
+  padding: 8px 12px;
+}
+
+.navbar__logo {
+  font-size: 24px;
+  color: var(--text-color);
+}
+
+.navbar__logo i {
+  color: var(--accent-color);
+}
+
+.navbar__menu {
+  display: flex;
+  list-style: none;
+  padding-left: 0; /*li에 기본으로 들어간 패딩 없애주기*/
+}
+
+.navbar__menu li {
+  padding: 8px 12px; /*padding을 넣으면 클릭할 수 있는 영역이 넓어진다. margin은 좁다.*/
+}
+
+.navbar__menu li:hover {
+  background-color: var(--accent-color);
+  border-radius: 4px;
+}
+
+.navbar__icons {
+  list-style: none;
+  color: var(--text-color);
+  display: flex;
+  padding-left: 0; /*li에 기본으로 들어간 패딩 없애주기*/
+}
+
+.navbar__icons li {
+  padding: 8px 12px;
+}
+
+.navbar__toogleBtn {
+  /*문서 흐름에서 자연스럽게 연결되게 해서 토글의 위치를 정해준다*/
+  display: none;
+  position: absolute;
+  right: 32px;
+  font-size: 24px;
+  color: var(--accent-color);
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column; /*중심축을 column으로 바꿔준다. logo, menu, icon을 세로정렬한다*/
+    align-items: flex-start; /*logo를 왼쪽으로 옮기기 위해 전체를 왼쪽으로 옮겼다.*/
+    padding: 8px 24px; /*padding을 주어서 화면에 꽉차있는 느낌을 없애주었다*/
+  }
+
+  .navbar__menu {
+    display: none;
+    flex-direction: column; /*중심축을 column으로 바꿔준다. menu의 이름들을 세로정렬한다*/
+    align-items: center; /*navbar에서 flex-start를 해주었기 때문에 center로 중심으로 가져온다*/
+    width: 100%; /* menu자체가 너비가 작기때문에 center적용이 안되는데 너비를 100%로 맞춰줘야지 적용된다*/
+  }
+
+  .navbar__menu li {
+    /*highlight효과를 너비에 맞게 바꾸기 위해 li에 속성을 준다*/
+    width: 100%; /* 너비를 100%로 맞춰서 highlight를 늘린다*/
+    text-align: center; /*너비가 넓어졌을 때 텍스트가 자동으로 왼쪽으로 가기때문에 다시 center를 해준다*/
+  }
+
+  .navbar__icons {
+    display: none;
+    justify-content: center; /*중심축이 그대로 row이기 때문에(아이콘 두 개를 세로정렬 할 필요가 없기 때문이다) center로 위치를 바꿔준다*/
+    width: 100%; /* 너비를 100%로 맞춰줘야지 가운데로 온다*/
+  }
+
+  .navbar__toogleBtn {
+    display: block;
+  }
+
+  .navbar__menu.active,
+  .navbar__icons.active {
+    display: flex;
+  }
+}
